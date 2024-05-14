@@ -23,12 +23,13 @@ from django.conf.urls.static import static
 from Admin_panel.core import views as core_views
 
 urlpatterns = [
-    path("", core_views.index, name='index'),
+    path("", core_views.dashboard, name='index'),
     path("admin/", admin.site.urls),
     path("__reload__/", include("django_browser_reload.urls")),
     path("upload/", core_views.upload, name='upload'),
     path("dashboard/", core_views.dashboard, name='dashboard'),
     path("upload_file/", core_views.upload_file, name='upload_file'),
+    path('delete_file/<int:file_id>/', core_views.delete_file, name='delete_file'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

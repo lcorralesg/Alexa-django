@@ -11,38 +11,49 @@
     <meta name="author" content="GitHub Codespaces">
     <meta name="generator" content="GitHub Codespaces">
     <meta name="theme-color" content="#000000">
+    <link rel="icon" href="/static/Tecicon.svg">
     <title>{% block title %}{{ title }}{% endblock %}</title>
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-    
 </head>
 
 <body>
     <div id="topPanel" class="bg-blue-600 p-2 flex justify items-center">
-        <a href="{% url 'index' %}">
-            <img src="{% static 'Tecicon.svg' %}" class="h-20"/>
+        <a href="/">
+            <img src="/static/Tecicon.svg" class="h-20" alt="Tec icon">
         </a>
+        <h1 class="text-white font-bold text-2xl ml-4">{{ title }}</h1>
+        <div class="flex-grow"></div>
     </div>
-    <div id="sidePanel" class="h-screen bg-gray-200 flex w-50">
-        <div class="w-50 p-4 shadow-lg transform translate-x-0 transition-transform duration-200 ease-in-out" style="background-color: #3BC0E9;">
-            <li class="mb-2 transition-colors duration-200 h-12 flex items-center {% if current_view == 'dashboard' %}bg-white bg-opacity-50 rounded{% endif %}">
-                <a href="{% url 'dashboard' %}" class="text-white font-bold block px-2 py-2 w-full h-full flex items-center">
-                    <i class="fas fa-chart-line px-2 fa-lg"></i> Dashboard
-                </a>
-            </li>
-            <ul class="w-full">
-                <li class="mb-2 transition-colors duration-200 h-12 flex items-center {% if current_view == 'upload' %}bg-white bg-opacity-50 rounded{% endif %}">
-                    <a href="{% url 'upload' %}" class="text-white font-bold block px-2 py-2 w-full h-full flex items-center">
-                        <i class="fas fa-file-upload px-2 fa-lg"></i> Subir archivo
-                    </a>
-                </li>
-            </ul>
+    <div class="flex h-screen bg-gray-100">
+        <div id="sidePanel" class="w-64 h-screen">
+            <div class="p-4 shadow-lg h-full" style="background-color: #3BC0E9;">
+                <ul class="space-y-4 mt-4">
+                    <li>
+                        <a href="/dashboard/" class="text-white font-bold block px-2 py-2 w-full flex items-center {% if current == 'dashboard' %}bg-white bg-opacity-50 rounded{% endif %}">
+                            <i class="fas fa-chart-line px-2 fa-lg"></i> Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/upload/" class="text-white font-bold block px-2 py-2 w-full flex items-center {% if current == 'upload' %}bg-white bg-opacity-50 rounded{% endif %}">
+                            <i class="fas fa-file-upload px-2 fa-lg"></i> Subir archivo
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="">
+        <div class="min-h-screen px-4 py-4 flex justify-center w-full">
             {% block content %}
             {% endblock %}
         </div>
     </div>
 </body>
+<script>
+    setTimeout(function() {
+        if ($('#msg').length > 0) {
+            $('#msg').fadeOut();
+        }
+    }, 2500);
+</script>
 </html>

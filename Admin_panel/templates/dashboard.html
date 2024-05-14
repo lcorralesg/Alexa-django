@@ -2,6 +2,61 @@
 {% load django_browser_reload %}
 {% load static %}
 {% block content %}
-<!-- Aquí va el contenido específico de upload.html -->
-
+<div class="shadow-md p-6 rounded-lg bg-white w-full">
+    <div class="w-full h-full mx-auto px-4 py-5 flex">
+        <div class="flex-1 mr-4">
+            <div class="shadow-md p-6 mt-6 rounded-lg bg-white">
+                <h2 class="text-xl font-bold mb-5">Preguntas Frecuentes</h2>
+                <div class="max-h-80 overflow-y-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pregunta</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fecha y Hora</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            {% for question in questions %}
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ question.Pregunta }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ question.Timestamp }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="flex-1">
+            <div class="shadow-md p-6 mt-6 rounded-lg bg-white">
+                <h2 class="text-xl font-bold mb-5">Calificaciones</h2>
+                <div class="max-h-80 overflow-y-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estrellas</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fecha y Hora</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            {% for rating in ratings %}
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    {% for star in rating.Estrellas %}
+                                        <i class="fas fa-star text-yellow-500"></i>
+                                    {% endfor %}
+                                    {% for star in rating.Estrellas_vacias %}
+                                        <i class="fas fa-star text-gray-200"></i>
+                                    {% endfor %}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ rating.Fecha_Hora }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>  
+    </div>
+</div>
 {% endblock %}

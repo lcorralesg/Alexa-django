@@ -140,3 +140,13 @@ MEDIA_ROOT = BASE_DIR / "Admin_panel" / "media"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+from django.contrib.messages import constants as messages
+
+MESSAGE_TAGS = {
+    messages.DEBUG: "bg-gray-200 text-gray-700 border border-gray-300",
+    messages.INFO: "bg-blue-200 text-blue-700 border border-blue-300",
+    messages.SUCCESS: "bg-green-200 text-green-700 border border-green-300",
+    messages.WARNING: "bg-yellow-200 text-yellow-700 border border-yellow-300",
+    messages.ERROR: "bg-red-200 text-red-700 border border-red-300",
+}
