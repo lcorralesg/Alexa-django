@@ -2,9 +2,15 @@ from django.shortcuts import render
 from django.http import JsonResponse
 import requests
 from django.contrib import messages
+import decouple
+
+external_api_host = decouple.config('EXTERNAL_API_HOST')
+external_api_port = decouple.config('EXTERNAL_API_PORT')
+
+api_url = f'http://{external_api_host}:{external_api_port}'  # Cambiado a http
 
 def get_files():
-    files_list = requests.get('https://alexa-docs.onrender.com/files').json()
+    files_list = requests.get(f'{api_url}/files').json()
     parsed_files = []
     for file in files_list:
         parsed_files.append({
@@ -20,7 +26,7 @@ def upload_file(request):
     if request.method == 'POST':
         file = request.FILES['file']  # 'file' es el nombre del campo de archivo en el formulario
         files = {'file': (file.name, file, file.content_type)}
-        response = requests.post('https://alexa-docs.onrender.com/uploadfile', files=files)
+        response = requests.post(f'{api_url}/uploadfile', files=files)
         file_list = get_files()
         if response.status_code == 200:
             messages.success(request, 'Archivo subido correctamente')
@@ -31,7 +37,7 @@ def upload_file(request):
     
 def delete_file(request, file_id):
     if request.method == 'POST':
-        response = requests.post(f'https://alexa-docs.onrender.com/delete_file_vectors/{file_id}')
+        response = requests.post(f'{api_url}/delete_file_vectors/{file_id}')
         if response.status_code == 200:
             file_list = get_files()
             return render(request, 'upload.html', {'current': 'upload', 'delete_success': True, 'files': file_list})
@@ -53,7 +59,7 @@ def upload(request):
                     'title': 'Subir archivos'})
 
 def dashboard(request):
-    questions_list = requests.get('https://alexa-docs.onrender.com/questions/').json()
+    questions_list = requests.get(f'{api_url}/questions').json()
 
     parsed_questions = []
     for question in questions_list:
@@ -62,7 +68,7 @@ def dashboard(request):
             'Timestamp': question['Timestamp'],
         })
 
-    ratings_list = requests.get('https://alexa-docs.onrender.com/ratings/').json()
+    ratings_list = requests.get(f'{api_url}/ratings').json()
 
     parsed_ratings = []
     for rating in ratings_list:
