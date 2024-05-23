@@ -83,10 +83,26 @@ WSGI_APPLICATION = "Admin_panel.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DB_HOST=alexa-db.crigosy20mua.us-east-2.rds.amazonaws.com
+# DB_PORT=3306
+# DB_DATABASE="alexa-db"
+# DB_USERNAME="admin"
+# DB_PASSWORD="Z!X8?Mad~h4r:DQ"
+
+db_host = config("DB_HOST")
+db_port = config("DB_PORT")
+db_database = config("DB_DATABASE")
+db_username = config("DB_USERNAME")
+db_password = config("DB_PASSWORD")
+
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": db_database,
+        "USER": db_username,
+        "PASSWORD": db_password,
+        "HOST": db_host,
+        "PORT": db_port,
     }
 }
 
@@ -113,10 +129,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
-
-TIME_ZONE = "UTC"
-
+LANGUAGE_CODE = 'es'
+TIME_ZONE = 'America/Lima'
 USE_I18N = True
 
 USE_TZ = True
