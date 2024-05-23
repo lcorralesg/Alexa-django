@@ -19,13 +19,30 @@
 </head>
 
 <body>
-    <div id="topPanel" class="bg-blue-600 p-2 flex justify items-center">
-        <a href="/">
-            <img src="/static/Tecicon.svg" class="h-20" alt="Tec icon">
-        </a>
-        <h1 class="text-white font-bold text-2xl ml-4">{{ title }}</h1>
-        <div class="flex-grow"></div>
+    <div id="topPanel" class="bg-blue-600 p-2 flex justify-between items-center">
+        <div class="flex items-center">
+            <a href="/">
+                <img src="/static/Tecicon.svg" class="h-20" alt="Tec icon">
+            </a>
+            <h1 class="text-white font-bold text-2xl ml-4">{{ title }}</h1>
+        </div>
+        <div class="flex items-center">
+            {% if user.is_authenticated %}
+                <span class="text-white mr-4">Welcome, {{ user.username }}</span>
+                <form id="logout-form" method="post" action="{% url 'logout' %}" class="inline">
+                    {% csrf_token %}
+                    <button type="submit" class="text-white bg-red-500 hover:bg-red-700 font-bold py-2 px-4 rounded">
+                        Logout
+                    </button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}" class="text-white bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded">
+                    Login
+                </a>
+            {% endif %}
+        </div>
     </div>
+    
     <div class="flex h-screen bg-gray-100">
         <div id="sidePanel" class="w-64 h-screen">
             <div class="p-4 shadow-lg h-full" style="background-color: #3BC0E9;">
@@ -57,3 +74,5 @@
     }, 2500);
 </script>
 </html>
+
+

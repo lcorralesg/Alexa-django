@@ -150,3 +150,5 @@ MESSAGE_TAGS = {
     messages.WARNING: "bg-yellow-200 text-yellow-700 border border-yellow-300",
     messages.ERROR: "bg-red-200 text-red-700 border border-red-300",
 }
+
+LOGIN_REDIRECT_URL = '/'

@@ -3,6 +3,8 @@ from django.http import JsonResponse
 import requests
 from django.contrib import messages
 import decouple
+from django.contrib.auth.decorators import login_required
+
 
 external_api_host = decouple.config('EXTERNAL_API_HOST')
 external_api_port = decouple.config('EXTERNAL_API_PORT')
@@ -34,7 +36,7 @@ def upload_file(request):
         if response.status_code == 400:
             messages.error(request, 'El nombre del archivo ya existe')
             return render(request, 'upload.html', {'current': 'upload', 'files': file_list})
-    
+  
 def delete_file(request, file_id):
     if request.method == 'POST':
         response = requests.post(f'{api_url}/delete_file_vectors/{file_id}')
@@ -51,6 +53,7 @@ def index(request):
     }
     return render(request, 'index.html', context)
 
+@login_required
 def upload(request):
     files = get_files()
     return render(request, 'upload.html', 
@@ -58,6 +61,7 @@ def upload(request):
                     'files': files,
                     'title': 'Subir archivos'})
 
+@login_required
 def dashboard(request):
     questions_list = requests.get(f'{api_url}/questions').json()
 
