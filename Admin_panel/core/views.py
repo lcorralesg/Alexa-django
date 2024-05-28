@@ -7,14 +7,18 @@ from collections import defaultdict
 import io
 import decouple
 import requests
-import locale
 
 external_api_host = decouple.config('EXTERNAL_API_HOST')
 external_api_port = decouple.config('EXTERNAL_API_PORT')
 
 api_url = f'http://{external_api_host}:{external_api_port}'
 
-locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
+import locale
+
+try:
+    locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
+except locale.Error:
+    print("La localización es_ES.UTF-8 no está disponible. Usando la localización predeterminada.")
 
 def get_files():
     files_list = requests.get(f'{api_url}/files').json()
