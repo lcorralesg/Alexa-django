@@ -1,0 +1,37 @@
+{% extends "index.html" %}
+{% load django_browser_reload %}
+{% load static %}
+{% block content %}
+    <div class="shadow-md p-6 rounded-lg bg-white w-full">
+        <div class="shadow-md p-6 rounded-lg bg-white w-full">
+            <div class="overflow-x-auto">
+                <h1 class="text-2xl font-bold mb-5">Ultimas Valoraciones</h1>
+                <div class="max-h-80 overflow-y-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estrellas</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fecha y Hora</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            {% for rating in ratings %}
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    {% for star in rating.Estrellas %}
+                                        <i class="fas fa-star text-yellow-500"></i>
+                                    {% endfor %}
+                                    {% for star in rating.Estrellas_vacias %}
+                                        <i class="fas fa-star text-gray-200"></i>
+                                    {% endfor %}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ rating.Fecha_Hora }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

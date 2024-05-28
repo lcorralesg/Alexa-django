@@ -6,10 +6,6 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="GitHub Codespaces ♥️ Django">
-    <meta name="author" content="GitHub Codespaces">
-    <meta name="generator" content="GitHub Codespaces">
     <meta name="theme-color" content="#000000">
     <link rel="icon" href="/static/Tecicon.svg">
     <title>{% block title %}{{ title }}{% endblock %}</title>
@@ -19,8 +15,8 @@
 </head>
 
 <body>
-    <div id="topPanel" class="bg-blue-600 p-2 flex justify-between items-center">
-        <div class="flex items-center">
+    <div id="topPanel" class="bg-blue-600 p-2 flex flex-col sm:flex-row justify-between items-center">
+        <div class="flex items-center mb-2 sm:mb-0">
             <a href="/">
                 <img src="/static/Tecicon.svg" class="h-20" alt="Tec icon">
             </a>
@@ -57,10 +53,20 @@
                             <i class="fas fa-file-upload px-2 fa-lg"></i> Subir archivo
                         </a>
                     </li>
+                    <li>
+                        <a href="/questions/" class="text-white font-bold block px-2 py-2 w-full flex items-center {% if current == 'questions' %}bg-white bg-opacity-50 rounded{% endif %}">
+                            <i class="fas fa-question px-2 fa-lg"></i> Preguntas
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/ratings/" class="text-white font-bold block px-2 py-2 w-full flex items-center {% if current == 'ratings' %}bg-white bg-opacity-50 rounded{% endif %}">
+                            <i class="fas fa-star px-2 fa-lg"></i> Valoraciones
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
-        <div class="min-h-screen px-4 py-4 flex justify-center w-full">
+        <div id="mainPanel" class="min-h-screen px-4 py-4 flex justify-center w-full">
             {% block content %}
             {% endblock %}
         </div>

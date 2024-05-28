@@ -28,8 +28,11 @@ urlpatterns = [
     path("__reload__/", include("django_browser_reload.urls")),
     path("upload/", core_views.upload, name='upload'),
     path("dashboard/", core_views.dashboard, name='dashboard'),
+    path("questions/", core_views.questions, name='questions'),
+    path("ratings/", core_views.ratings, name='ratings'),
     path("upload_file/", core_views.upload_file, name='upload_file'),
     path('delete_file/<int:file_id>/', core_views.delete_file, name='delete_file'),
+    path('downloadfile/<str:filename>/', core_views.downloadfile, name='downloadfile'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
 ]
