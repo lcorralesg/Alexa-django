@@ -13,12 +13,20 @@ external_api_port = decouple.config('EXTERNAL_API_PORT')
 
 api_url = f'http://{external_api_host}:{external_api_port}'
 
-import locale
-
-try:
-    locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
-except locale.Error:
-    print("La localización es_ES.UTF-8 no está disponible. Usando la localización predeterminada.")
+month_map = {
+    'January': 'Enero',
+    'February': 'Febrero',
+    'March': 'Marzo',
+    'April': 'Abril',
+    'May': 'Mayo',
+    'June': 'Junio',
+    'July': 'Julio',
+    'August': 'Agosto',
+    'September': 'Septiembre',
+    'October': 'Octubre',
+    'November': 'Noviembre',
+    'December': 'Diciembre'
+    }
 
 def get_files():
     files_list = requests.get(f'{api_url}/files').json()
@@ -121,11 +129,12 @@ def dashboard(request):
     for question in questions_list:
         question_date = datetime.strptime(question['Timestamp'], '%d-%m-%Y %H:%M')
         month = question_date.strftime('%B').capitalize()
-        if month not in que_x_axis:
-            que_x_axis.append(month)
+        translation_q = month_map[month]
+        if translation_q not in que_x_axis:
+            que_x_axis.append(translation_q)
             que_y_axis.append(1)
         else:
-            que_y_axis[que_x_axis.index(month)] += 1
+            que_y_axis[que_x_axis.index(translation_q)] += 1
 
     ra_x_axis = []
     ra_y_axis = []
@@ -137,9 +146,10 @@ def dashboard(request):
         month = rating_date.strftime('%B').capitalize()
         ratings[month]['sum'] += rating['Puntuacion']
         ratings[month]['count'] += 1
-
-    ra_x_axis = list(ratings.keys())
-    ra_y_axis = [round(ratings[month]['sum'] / ratings[month]['count'], 2) for month in ra_x_axis]
+    
+    translated_ratings = {month_map[month]: ratings[month] for month in ratings}
+    ra_x_axis = list(translated_ratings.keys())
+    ra_y_axis = [round(translated_ratings[month]['sum'] / translated_ratings[month]['count'], 2) if translated_ratings[month]['count'] != 0 else 0 for month in ra_x_axis]
     ra_y_axis = [str(rating).replace(',', '.') for rating in ra_y_axis]
 
     return render(request, 'dashboard.html', {
