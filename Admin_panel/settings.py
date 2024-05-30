@@ -79,16 +79,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "Admin_panel.wsgi.application"
 
-
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
-# DB_HOST=alexa-db.crigosy20mua.us-east-2.rds.amazonaws.com
-# DB_PORT=3306
-# DB_DATABASE="alexa-db"
-# DB_USERNAME="admin"
-# DB_PASSWORD="Z!X8?Mad~h4r:DQ"
-
 db_host = config("DB_HOST")
 db_port = config("DB_PORT")
 db_database = config("DB_DATABASE")
