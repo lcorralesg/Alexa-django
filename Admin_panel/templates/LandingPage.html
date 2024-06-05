@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Landing page for virtual assistant services, promoting remote work and offering various services.">
+  <link rel="icon" href="/static/images/Tecicon.svg" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/static/styles/css/estilos.css">
+  <script src="https://kit.fontawesome.com/b5a6a52f1a.js" crossorigin="anonymous"></script>
+  <title>{% block title %}{{ title }}{% endblock %}</title>
+</head>
+
+<body>
+  <header class="hero">
+    <nav class="bg-blue-600 fixed w-full z-50 shadow-2xl">
+      <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">  
+        <div class="relative flex items-center justify-between h-1 m-10">
+          <div class="flex items-center px-2 lg:px-0">
+            <div class="flex-shrink-0">
+              <img class="w-28" src="/static/images/Tecicon.svg" alt="Logo">
+            </div>
+          </div>
+          <div class="block lg:ml-2">
+            <div class="flex space-x-4">
+              <a href="{% url 'dashboard' %}" class="border border-white text-white px-3 py-2 rounded-md font-bold font-medium hover:bg-white hover:text-blue-600" >Panel de Administrador</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="textos-hero mt-14 font-bold">
+      <h1>Diseño y Desarrollo de Software</h1>
+    </div>
+    <div style="position: relative; top: -75px;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+          <path fill="#FFFF" fill-opacity="1" d="M0,128L80,138.7C160,149,320,171,480,154.7C640,139,800,85,960,69.3C1120,53,1280,75,1360,85.3L1440,96L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
+      </svg>
+    </div>
+  </div>
+  </header>
+  <main>
+    <section class="wave-contenedor website ">
+      <div class="contenedor-textos-main">
+          <h2 class="titulo">Malla de la Carrera</h2>
+          <div class="parrafo-container">
+              <img src="/static/images/img_malla.jpg" alt="Remote work illustration" class="image-malla">
+          </div>
+      </div>
+    </section> 
+    <section class="info">
+      <div class="contenedor">
+        <h2 class="titulo">¿En que empresas podrías trabajar?</h2>
+        <p class="parrafo center-paragraph">
+          De las 10 empresas más grandes del mundo, la mayoría son tecnológicas
+        </p>
+        <img src="/static/images/img_ranking.jpg" alt="Remote work illustration" class="image-ranking">
+      </div>
+    </section>
+    <section class="wave-contenedor website ">
+      <div class="contenedor-textos-main">
+          <h2 class="titulo">¿Qué conoce un egresado de la carrera?</h2>
+          <div class="parrafo-container">
+              <img src="/static/images/img_conocimientos.jpg" alt="Remote work illustration" class="image-conocimientos">
+          </div>
+      </div>
+    </section>
+    <section class="galeria">
+      <div class="contenedor">
+        <h2 class="titulo">Laboratorios con máquinas de última generación</h2>
+        <article class="galeria-cont">
+          <img src="/static/images/img_lab1.jpg" alt="Work sample 1" class="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 mt-5">
+          <img src="/static/images/img_lab2.jpg" alt="Work sample 2" class="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 mt-5">
+          <img src="/static/images/img_lab3.jpg" alt="Work sample 3" class="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 mt-5">
+        </article>
+      </div>
+    </section>   
+    <section class="contenedor">
+      <h2 class="titulo">Actividades Complementarias</h2>
+      <div class="content-cards">
+        <article class="cards">
+          <h3>Eventos Internacionales</h3>
+          <img src="/static/images/img_evento1.jpg" alt="Work sample 1" class="image-eventos">
+          <a href="https://www.tecsup.edu.pe/convenios-y-cooperacion-internacional" class="cta">Aprender Más</a>
+        </article>
+        <article class="cards">
+          <h3>Hackaton</h3>
+          <img src="/static/images/img_evento2.jpg" alt="Work sample 1" class="image-eventos">
+          <a href="https://hackathon.tecsup.edu.pe/" class="cta">Aprender Más</a>
+        </article>
+        <article class="cards">
+          <h3>Beca Alianza del Pacífico</h3>
+          <img src="/static/images/img_evento3.jpg" alt="Work sample 1" class="image-eventos">
+          <a href="https://www.tecsup.edu.pe/noticias/tecsup-selecciona-alumnos-para-beca-alianza-del-pacifico" class="cta">Aprender Más</a>
+        </article>
+      </div>
+    </section>
+    <section class="galeria">
+      <div class="contenedor">
+        <h2 class="titulo">¿Donde están nuestros egresados?</h2>
+        <article class="galeria-cont1">
+          <img src="/static/images/img_empresa1.jpg" alt="Work sample 1" class="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 mt-5">
+          <img src="/static/images/img_empresa2.jpg" alt="Work sample 2" class="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 mt-5">
+          <img src="/static/images/img_empresa3.jpg" alt="Work sample 3" class="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 mt-5">
+          <img src="/static/images/img_empresa4.jpg" alt="Work sample 1" class="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 mt-5">
+          <img src="/static/images/img_empresa5.jpg" alt="Work sample 2" class="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 mt-5">
+          <img src="/static/images/img_empresa6.png" alt="Work sample 3" class="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 mt-5">
+        </article>
+      </div>
+    </section> 
+    <section class="info-last">
+      <div class="contenedor-last-section">
+        <div class="contenedor-texto-last">
+          <h2 class="titulo right">Dudas? Consulta a nuestro asistente virtual</h2>
+          <div class="content-flex">
+            <p class="parrafo">
+              Dirige tus preguntas al dispositivo y este te responderá con información verificada y actualizada.
+            </p>
+            <div class="video-container">
+              <video src="/static/videos/video_echodotdemo.mp4" controls class="video-echodot"></video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>    
+  </main>
+  <footer class="footer" id="contacto">
+    <div class="contenedor">
+      <h2 class="titulo">Configura el comportamiento del Asistente Virtual</h2>
+      <img src="/static/images/gif_adminpage.gif" alt="Descripción del GIF" class="gif-adminpanel"/>
+      <a href="{% url 'dashboard' %}" class="cta transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110">Ir al Panel de Administrador</a>
+    </div>
+  </footer>
+</body>
+</html>

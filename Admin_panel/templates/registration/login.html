@@ -1,58 +1,69 @@
 {% load static %}
 {% block content %}
-<div class="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-  <div class="max-w-md w-full space-y-8">
-    <div>
-      <img class="mx-auto h-40 w-auto" src="{% static 'Tecicon.svg' %}" alt="Your Logo">
-
-      <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Iniciar Sesión</h2>
-    </div>
-    <form class="mt-8 space-y-6" method="post" action="{% url 'login' %}">
-      {% csrf_token %}
-      {% if form.errors %}
-      <div class="rounded-md bg-red-50 p-4" id="msg-error">
-        <div class="flex">
-          <div class="flex-shrink-0">
-            <svg class="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 040 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M18 10c0 4.418-3.582 8-8 8s-8-3.582-8-8 3.582-8 8-8 8 3.582 8 8zm-8-4a1 1 0 00-.707 1.707L10.586 10l-1.293 1.293A1 1 0 109.707 13.707L12 11.414l2.293 2.293A1 1 0 1015.707 12.293L13.414 10l1.293-1.293A1 1 0 0012 7.707L10 9.414 7.707 7.707A1 1 0 108.293 6.293L10 8.586l1.293-1.293A1 1 0 0010 6z" clip-rule="evenodd"/>
-            </svg>
-          </div>
-          <div class="ml-3">
-            <h3 class="text-sm font-medium text-red-800">
-              {{ form.non_field_errors }}
-            </h3>
-          </div>
-        </div>
-      </div>
-      {% endif %}
-      <div class="rounded-md shadow-sm space-y-6">
-        <div>
-          <label for="username" class="block text-sm font-medium text-gray-700">Usuario</label>
-          <input id="username" name="username" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
-        </div>
-        <div>
-          <label for="password" class="block text-sm font-medium text-gray-700">Contraseña</label>
-          <input id="password" name="password" type="password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
-        </div>
-      </div>
-      <input type="hidden" name="next" value="{{ next }}">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/static/images/Tecicon.svg" type="image/x-icon">
+  <title>Login</title>
+</head>
+<body>
+  <div class="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full space-y-8">
       <div>
-        <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-          Iniciar Sesión
-        </button>
+        <img class="mx-auto h-40 w-auto" src="/static/images/Tecicon.svg" alt="Your Logo">
+  
+        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Iniciar Sesión</h2>
       </div>
-    </form>
+      <form class="mt-8 space-y-6" method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        {% if form.errors %}
+        <div class="rounded-md bg-red-50 p-4" id="msg-error">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <svg class="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 040 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M18 10c0 4.418-3.582 8-8 8s-8-3.582-8-8 3.582-8 8-8 8 3.582 8 8zm-8-4a1 1 0 00-.707 1.707L10.586 10l-1.293 1.293A1 1 0 109.707 13.707L12 11.414l2.293 2.293A1 1 0 1015.707 12.293L13.414 10l1.293-1.293A1 1 0 0012 7.707L10 9.414 7.707 7.707A1 1 0 108.293 6.293L10 8.586l1.293-1.293A1 1 0 0010 6z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <div class="ml-3">
+              <h3 class="text-sm font-medium text-red-800">
+                {{ form.non_field_errors }}
+              </h3>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        <div class="rounded-md shadow-sm space-y-6">
+          <div>
+            <label for="username" class="block text-sm font-medium text-gray-700">Usuario</label>
+            <input id="username" name="username" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
+          </div>
+          <div>
+            <label for="password" class="block text-sm font-medium text-gray-700">Contraseña</label>
+            <input id="password" name="password" type="password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
+          </div>
+        </div>
+        <input type="hidden" name="next" value="{{ next }}">
+        <div>
+          <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            Iniciar Sesión
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
-</div>
-{% endblock %}
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdn.tailwindcss.com"></script>
-
-<script>
-  setTimeout(function() {
-    if ($('#msg-error').length > 0) {
-      $('#msg-error').fadeOut();
-    }
-  }, 2000);
-</script>
+  {% endblock %}
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    setTimeout(function() {
+      if ($('#msg-error').length > 0) {
+        $('#msg-error').fadeOut();
+      }
+    }, 2000);
+  </script>
+</body>
+</html>

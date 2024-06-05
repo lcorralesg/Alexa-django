@@ -23,7 +23,7 @@ from django.contrib.auth import views as auth_views
 from Admin_panel.core import views as core_views
 
 urlpatterns = [
-    path("", core_views.dashboard, name='index'),
+    path("", core_views.landing, name='landing'),
     path("admin/", admin.site.urls),
     path("__reload__/", include("django_browser_reload.urls")),
     path("upload/", core_views.upload, name='upload'),
@@ -34,7 +34,7 @@ urlpatterns = [
     path('delete_file/<int:file_id>/', core_views.delete_file, name='delete_file'),
     path('downloadfile/<str:filename>/', core_views.downloadfile, name='downloadfile'),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='landing'), name='logout'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

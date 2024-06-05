@@ -69,6 +69,12 @@ def downloadfile(request, filename):
         return FileResponse(io.BytesIO(response.content), as_attachment=True, filename=filename)
     else:
         return JsonResponse({'error': 'Archivo no encontrado'}, status=404)
+    
+def landing(request):
+    context = {
+        "title": "Bienvenido",
+    }
+    return render(request, 'LandingPage.html', context)
 
 def index(request):
     context = {
