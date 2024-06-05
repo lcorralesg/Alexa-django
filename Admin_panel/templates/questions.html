@@ -2,29 +2,57 @@
 {% load django_browser_reload %}
 {% load static %}
 {% block content %}
-    <div class="shadow-md p-6 rounded-lg bg-white w-full">
-        <div class="shadow-md p-6 rounded-lg bg-white w-full">
+<div class="shadow-md p-6 rounded-lg bg-white w-full">
+    <div class="flex justify-between">
+        <!-- Tabla de Preguntas Recibidas -->
+        <div class="shadow-md p-3 rounded-lg bg-white w-full md:w-1/2">
             <div class="overflow-x-auto">
                 <h1 class="text-2xl font-bold mb-5">Preguntas Recibidas</h1>
                 <div class="max-h-80 overflow-y-auto">
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
-                        <tr>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pregunta</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fecha y hora</th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
-                        {% for question in questions %}
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ question.Pregunta }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ question.Timestamp }}</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pregunta</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fecha y hora</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            {% for question in questions %}
+                            <tr>
+                                <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">{{ question.Pregunta }}</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">{{ question.Timestamp }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- Tabla de Preguntas No Respondidas -->
+        <div class="shadow-md p-3 rounded-lg bg-white w-full md:w-1/2 ml-3">
+            <div class="overflow-x-auto">
+                <h1 class="text-2xl font-bold mb-5">Preguntas No Respondidas</h1>
+                <div class="max-h-80 overflow-y-auto">
+                    <table class="min-w-full divide-y divide-gray-200 table-fixed">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pregunta</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fecha y hora</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            {% for question_nr in questions_nr %}
+                            <tr>
+                                <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">{{ question_nr.Pregunta }}</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">{{ question_nr.Timestamp }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
 {% endblock %}

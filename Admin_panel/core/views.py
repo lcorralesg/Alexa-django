@@ -93,10 +93,12 @@ def upload(request):
 @login_required
 def questions(request):
     questions_list = requests.get(f'{api_url}/questions').json()
+    questions_nr_list = requests.get(f'{api_url}/questions_nr').json()
 
     return render(request, 'questions.html', {
         'current': 'questions',
         'questions': questions_list,
+        'questions_nr': questions_nr_list,
         'title': 'Preguntas',
     })
 
